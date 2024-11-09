@@ -1,0 +1,7 @@
+.vscode/
+requirements/
+*.pnm
+*P1*
+*P2*
+
+!*.cu
