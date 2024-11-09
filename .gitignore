@@ -4,4 +4,5 @@ requirements/
 *P1*
 *P2*
 
+!in.pnm
 !*.cu
