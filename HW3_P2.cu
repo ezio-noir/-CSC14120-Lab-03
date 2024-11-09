@@ -115,7 +115,7 @@ void addVec(int *in1, int *in2, int n,
 
 			CHECK(cudaMemcpyAsync(d_in1 + offsetElem, in1 + offsetElem, nElemsStream * sizeof(int), cudaMemcpyHostToDevice, streams[i]));
 			CHECK(cudaMemcpyAsync(d_in2 + offsetElem, in2 + offsetElem, nElemsStream * sizeof(int), cudaMemcpyHostToDevice, streams[i]));
-			addVecKernel<<<dim3(nBlocksStream), blockSize>>>(d_in1 + offsetElem, d_in2 + offsetElem, nElemsStream, d_out + offsetElem);
+			addVecKernel<<<dim3(nBlocksStream), blockSize, 0, streams[i]>>>(d_in1 + offsetElem, d_in2 + offsetElem, nElemsStream, d_out + offsetElem);
 			CHECK(cudaMemcpyAsync(out + offsetElem, d_out + offsetElem, nElemsStream * sizeof(int), cudaMemcpyDeviceToHost, streams[i]));
 		}
 		// Wait for nStreams streams to finish
